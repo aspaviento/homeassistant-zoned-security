@@ -46,6 +46,15 @@ A common deployment model is:
 This keeps sensor-specific logic in HomeKit when desired, while centralizing the
 alarm state machine in Home Assistant.
 
+## Dashboard Example
+
+Zoned Security does not create a Lovelace dashboard automatically, but a compact
+testing view is useful while wiring automations. A typical dashboard groups the
+alarm panel and mode switches, zone switches, workflow helpers, and Logbook
+activity in separate sections:
+
+![Example Zoned Security dashboard](docs/dashboard-example.svg)
+
 ## Status
 
 This is an early custom integration. It is not a certified alarm system and should

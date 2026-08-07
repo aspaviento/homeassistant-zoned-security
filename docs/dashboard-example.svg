@@ -1,0 +1,147 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="360" viewBox="0 0 1280 360" role="img" aria-labelledby="title desc">
+  <title id="title">Example Zoned Security dashboard</title>
+  <desc id="desc">A sanitized Home Assistant dashboard layout for a zoned alarm workflow.</desc>
+  <rect width="1280" height="360" fill="#fafafa"/>
+  <style>
+    .section{font:600 15px -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#1f1f1f}
+    .card{fill:#fff;stroke:#dedede;stroke-width:1}
+    .title{font:600 14px -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#202124}
+    .sub{font:12px -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#333}
+    .muted{font:12px -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#666}
+    .activity{font:13px -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#222}
+    .time{font:12px -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#666}
+  </style>
+
+  <text class="section" x="20" y="30">Status</text>
+  <text class="section" x="335" y="30">Zones</text>
+  <text class="section" x="650" y="30">Workflow</text>
+  <text class="section" x="960" y="30">Activity</text>
+
+  <g transform="translate(20 50)">
+    <rect class="card" width="145" height="86" rx="8"/>
+    <circle cx="24" cy="24" r="16" fill="#ffebee"/>
+    <path d="M24 14c-7 0-10 5-10 12v5h20v-5c0-7-3-12-10-12z" fill="#f44336"/>
+    <text class="title" x="52" y="29">Security System</text>
+    <text class="sub" x="52" y="48">Triggered</text>
+    <rect x="12" y="57" width="121" height="22" rx="6" fill="#eeeeee"/>
+  </g>
+  <g transform="translate(175 50)">
+    <rect class="card" width="145" height="86" rx="8"/>
+    <circle cx="24" cy="24" r="16" fill="#eeeeee"/>
+    <rect x="18" y="12" width="12" height="24" rx="2" fill="#9e9e9e"/>
+    <text class="title" x="52" y="29">Home Mode</text>
+    <text class="sub" x="52" y="48">Off</text>
+    <rect x="12" y="57" width="121" height="22" rx="6" fill="#eeeeee"/>
+    <rect x="12" y="57" width="45" height="22" rx="6" fill="#9e9e9e"/>
+  </g>
+  <g transform="translate(20 150)">
+    <rect class="card" width="145" height="86" rx="8"/>
+    <circle cx="24" cy="24" r="16" fill="#eeeeee"/>
+    <rect x="18" y="12" width="12" height="24" rx="2" fill="#9e9e9e"/>
+    <text class="title" x="52" y="29">Away Mode</text>
+    <text class="sub" x="52" y="48">Off</text>
+    <rect x="12" y="57" width="121" height="22" rx="6" fill="#eeeeee"/>
+    <rect x="12" y="57" width="45" height="22" rx="6" fill="#9e9e9e"/>
+  </g>
+  <g transform="translate(175 150)">
+    <rect class="card" width="145" height="86" rx="8"/>
+    <circle cx="24" cy="24" r="16" fill="#fff2cc"/>
+    <rect x="18" y="12" width="12" height="24" rx="2" fill="#ffb300"/>
+    <text class="title" x="52" y="29">Night Mode</text>
+    <text class="sub" x="52" y="48">On</text>
+    <rect x="12" y="57" width="121" height="22" rx="6" fill="#fff3cd"/>
+    <rect x="76" y="57" width="57" height="22" rx="6" fill="#ffc107"/>
+  </g>
+
+  <g transform="translate(335 50)">
+    <rect class="card" width="145" height="86" rx="8"/>
+    <circle cx="24" cy="24" r="16" fill="#eeeeee"/>
+    <rect x="18" y="12" width="12" height="24" rx="2" fill="#9e9e9e"/>
+    <text class="title" x="52" y="29">Front Door</text>
+    <text class="sub" x="52" y="48">Off</text>
+    <rect x="12" y="57" width="121" height="22" rx="6" fill="#eeeeee"/>
+    <rect x="12" y="57" width="45" height="22" rx="6" fill="#9e9e9e"/>
+  </g>
+  <g transform="translate(490 50)">
+    <rect class="card" width="145" height="86" rx="8"/>
+    <circle cx="24" cy="24" r="16" fill="#fff2cc"/>
+    <rect x="18" y="12" width="12" height="24" rx="2" fill="#ffb300"/>
+    <text class="title" x="52" y="29">Upper Zone</text>
+    <text class="sub" x="52" y="48">On</text>
+    <rect x="12" y="57" width="121" height="22" rx="6" fill="#fff3cd"/>
+    <rect x="76" y="57" width="57" height="22" rx="6" fill="#ffc107"/>
+  </g>
+  <g transform="translate(335 150)">
+    <rect class="card" width="145" height="86" rx="8"/>
+    <circle cx="24" cy="24" r="16" fill="#eeeeee"/>
+    <rect x="18" y="12" width="12" height="24" rx="2" fill="#9e9e9e"/>
+    <text class="title" x="52" y="29">Basement</text>
+    <text class="sub" x="52" y="48">Off</text>
+    <rect x="12" y="57" width="121" height="22" rx="6" fill="#eeeeee"/>
+    <rect x="12" y="57" width="45" height="22" rx="6" fill="#9e9e9e"/>
+  </g>
+  <g transform="translate(490 150)">
+    <rect class="card" width="145" height="86" rx="8"/>
+    <circle cx="24" cy="24" r="16" fill="#eeeeee"/>
+    <rect x="18" y="12" width="12" height="24" rx="2" fill="#9e9e9e"/>
+    <text class="title" x="52" y="29">Exterior</text>
+    <text class="sub" x="52" y="48">Off</text>
+    <rect x="12" y="57" width="121" height="22" rx="6" fill="#eeeeee"/>
+    <rect x="12" y="57" width="45" height="22" rx="6" fill="#9e9e9e"/>
+  </g>
+
+  <g transform="translate(650 50)">
+    <rect class="card" width="145" height="86" rx="8"/>
+    <circle cx="24" cy="24" r="16" fill="#eeeeee"/>
+    <rect x="18" y="12" width="12" height="24" rx="2" fill="#9e9e9e"/>
+    <text class="title" x="52" y="29">Pre Alarm</text>
+    <text class="sub" x="52" y="48">Off</text>
+    <rect x="12" y="57" width="121" height="22" rx="6" fill="#eeeeee"/>
+    <rect x="12" y="57" width="45" height="22" rx="6" fill="#9e9e9e"/>
+  </g>
+  <g transform="translate(805 50)">
+    <rect class="card" width="145" height="86" rx="8"/>
+    <circle cx="24" cy="24" r="16" fill="#fff2cc"/>
+    <rect x="18" y="12" width="12" height="24" rx="2" fill="#ffb300"/>
+    <text class="title" x="52" y="29">Delay Alarm</text>
+    <text class="sub" x="52" y="48">On</text>
+    <rect x="12" y="57" width="121" height="22" rx="6" fill="#fff3cd"/>
+    <rect x="76" y="57" width="57" height="22" rx="6" fill="#ffc107"/>
+  </g>
+  <g transform="translate(650 150)">
+    <rect class="card" width="145" height="86" rx="8"/>
+    <circle cx="24" cy="24" r="16" fill="#eeeeee"/>
+    <rect x="18" y="12" width="12" height="24" rx="2" fill="#9e9e9e"/>
+    <text class="title" x="52" y="29">Disable Alarm</text>
+    <text class="sub" x="52" y="48">Off</text>
+    <rect x="12" y="57" width="121" height="22" rx="6" fill="#eeeeee"/>
+    <rect x="12" y="57" width="45" height="22" rx="6" fill="#9e9e9e"/>
+  </g>
+
+  <g transform="translate(960 50)">
+    <rect class="card" width="300" height="250" rx="8"/>
+    <text class="title" x="16" y="32">Today</text>
+    <circle cx="26" cy="65" r="4" fill="#f44336"/>
+    <text class="activity" x="48" y="69">Triggered</text>
+    <text class="time" x="244" y="69">17:50:45</text>
+    <line x1="26" y1="69" x2="26" y2="94" stroke="#d6d6d6"/>
+    <circle cx="26" cy="104" r="4" fill="#009688"/>
+    <text class="activity" x="48" y="108">Upper Zone triggered in Night Mode</text>
+    <text class="time" x="244" y="108">17:50:45</text>
+    <line x1="48" y1="123" x2="284" y2="123" stroke="#eeeeee"/>
+    <line x1="26" y1="108" x2="26" y2="133" stroke="#d6d6d6"/>
+    <circle cx="26" cy="143" r="4" fill="#4caf50"/>
+    <text class="activity" x="48" y="147">Armed night</text>
+    <text class="time" x="244" y="147">17:50:43</text>
+    <line x1="48" y1="162" x2="284" y2="162" stroke="#eeeeee"/>
+    <line x1="26" y1="147" x2="26" y2="172" stroke="#d6d6d6"/>
+    <circle cx="26" cy="182" r="4" fill="#009688"/>
+    <text class="activity" x="48" y="186">Mode changed to Night Mode</text>
+    <text class="time" x="244" y="186">17:50:43</text>
+    <line x1="48" y1="201" x2="284" y2="201" stroke="#eeeeee"/>
+    <line x1="26" y1="186" x2="26" y2="211" stroke="#d6d6d6"/>
+    <circle cx="26" cy="221" r="4" fill="#9e9e9e"/>
+    <text class="activity" x="48" y="225">Disarmed</text>
+    <text class="time" x="244" y="225">17:49:03</text>
+  </g>
+</svg>
