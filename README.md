@@ -61,7 +61,7 @@ This repository can be installed as a HACS custom repository.
 
 1. Open HACS in Home Assistant.
 2. Go to custom repositories.
-3. Add `https://github.com/aspaviento/zoned-security-home-assistant` as an
+3. Add `https://github.com/aspaviento/homeassistant-zoned-security` as an
    `Integration`.
 4. Install `Zoned Security`.
 5. Add a YAML configuration, for example by adapting
