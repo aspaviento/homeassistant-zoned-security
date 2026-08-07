@@ -1,0 +1,57 @@
+zoned_security:
+  systems:
+    main:
+      name: Security System
+      default: disarmed
+      stored: true
+
+      modes:
+        away:
+          name: Away
+        night:
+          name: Night
+        home:
+          name: Home
+
+      zones:
+        - name: Front Door
+          object_id: front_door_zone
+        - name: Patio
+          object_id: patio_zone
+        - name: Garage
+          object_id: garage_zone
+
+      helpers:
+        delay_alarm:
+          name: Delay Alarm
+          period: 60
+          auto_off: true
+          stored: false
+        pre_alarm:
+          name: Pre Alarm
+          period: 60
+          auto_off: true
+          stored: false
+        disable_alarm:
+          name: Disable Alarm
+          stored: false
+
+      notifications:
+        alarm:
+          service: notify.notify
+          title: Security System
+          message: Alarm activated
+          priority: 1
+          mute_seconds: 60
+        alarm_inhibited:
+          service: notify.notify
+          title: Security System
+          message: Alarm inhibited
+          priority: 0
+          mute_seconds: 60
+        prealert:
+          service: notify.notify
+          title: Security System
+          message: Pre-alarm activated
+          priority: 0
+          mute_seconds: 60

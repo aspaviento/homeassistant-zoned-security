@@ -1,0 +1,11 @@
+{
+  "domain": "zoned_security",
+  "name": "Zoned Security",
+  "codeowners": ["@aspaviento"],
+  "config_flow": false,
+  "documentation": "https://github.com/aspaviento/zoned-security-home-assistant",
+  "issue_tracker": "https://github.com/aspaviento/zoned-security-home-assistant/issues",
+  "iot_class": "local_push",
+  "requirements": [],
+  "version": "0.1.0"
+}
