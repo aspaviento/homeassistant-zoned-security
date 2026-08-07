@@ -30,7 +30,7 @@ ruby -e 'require "yaml"; YAML.load_file("examples/zoned_security.yaml")'
 Before publishing, scan for private household details:
 
 ```bash
-git grep -n -E 'mataberrypi|onepi|zeropi|/home/pi|192\.168|fdf2|notify\.pushover|HA Zona|HA Modo|HA Security|Alarma|Prealarma|Ático|Sótano|Primera|Segunda'
+git grep -n -E 'mataberrypi|onepi|zeropi|/home/pi|192\.168|fdf2|HA Zona|HA Modo|HA Security|Alarma|Prealarma|Ático|Sótano|Primera|Segunda'
 ```
 
 ## Operating Rules

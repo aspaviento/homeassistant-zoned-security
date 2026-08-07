@@ -124,6 +124,44 @@ Notification options:
 - `sound`: optional notification sound passed as service data.
 - `mute_seconds`: per-notification throttle period.
 
+## Pushover Notifications
+
+Zoned Security does not depend on Pushover, but it works well with Home
+Assistant's Pushover notification integration. This is useful when Home
+Assistant should send alarm notifications directly instead of routing that
+responsibility through HomeKit automations.
+
+First configure Pushover in Home Assistant. Then reference the resulting notify
+service in `notifications`:
+
+```yaml
+notifications:
+  alarm:
+    service: notify.pushover
+    title: Security System
+    message: Alarm activated
+    priority: 1
+    sound: siren
+    mute_seconds: 60
+  alarm_inhibited:
+    service: notify.pushover
+    title: Security System
+    message: Alarm inhibited
+    priority: 0
+    mute_seconds: 60
+  prealert:
+    service: notify.pushover
+    title: Security System
+    message: Pre-alarm activated
+    priority: 0
+    mute_seconds: 60
+```
+
+When the delayed alarm expires without inhibition, the `alarm` notification is
+sent with additional context: mode, triggering zone, active zones, and time. When
+the alarm is manually inhibited, `alarm_inhibited` is sent as a simple message
+and the active zones are cleared.
+
 ## Example Configuration
 
 ```yaml
