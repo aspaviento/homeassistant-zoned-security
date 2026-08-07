@@ -68,6 +68,8 @@ are not a supported public contract yet.
 
 This repository can be installed as a HACS custom repository.
 
+[![Open your Home Assistant instance and open this repository inside HACS.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=aspaviento&repository=homeassistant-zoned-security&category=integration)
+
 1. Open HACS in Home Assistant.
 2. Go to custom repositories.
 3. Add `https://github.com/aspaviento/homeassistant-zoned-security` as an
