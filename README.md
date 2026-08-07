@@ -11,11 +11,11 @@ used entirely from Home Assistant automations.
 
 ## Project Lineage
 
-This project is inspired by the security-system behavior from the former
-`homebridge-automation-switches` Homebridge plugin. That plugin is no longer
-maintained in its original repository, but its model remains useful: represent an
-alarm system with modes, zone switches, automation helper switches, and delayed
-alarm handling.
+This project is inspired by a customized alarm setup built around the former
+`homebridge-automation-switches` Homebridge plugin. The original plugin provided
+useful primitives for a HomeKit-facing security system and automation switches.
+The delayed alarm, manual inhibition, and pre-alarm workflow documented here were
+implemented by combining those primitives with additional automations.
 
 Zoned Security brings that pattern into Home Assistant so the alarm state can be
 managed locally and then optionally exposed to HomeKit through Home Assistant's
@@ -255,41 +255,49 @@ Use the normal Home Assistant services for its entities:
 - `switch.turn_on`
 - `switch.turn_off`
 
-## Alarm Flow
+## Workflow
+
+Zoned Security is intentionally built as a small state machine plus helper
+switches. The integration owns the alarm mode, active zones, helper timers, and
+notifications. The user decides which automations turn zones on and which
+downstream actions should happen when helper switches change state.
+
+### Optional Pre-Alarm
+
+`pre_alarm` can be used as a first-stage filter before a real zone trigger. This
+is useful when some sensors may create occasional false positives: the first
+activation can turn on `pre_alarm`, send the configured `prealert` notification,
+and auto-off after its configured period. A later activation, while the
+pre-alarm condition is still relevant, can then turn on the real zone switch.
+
+This helper is optional. If a deployment does not need a two-step alarm model,
+sensor automations can trigger zones directly.
+
+### Zone Trigger and Delay
 
 When the system is armed and a zone switch turns on, the alarm enters
 `triggered`. If the `delay_alarm` helper exists, Zoned Security turns it on and
-waits for its timer to expire.
+starts its configured timer.
 
-When `delay_alarm` expires:
+During this delay window, a user or automation can turn on `disable_alarm` to
+manually inhibit the alarm. If the timer expires and `disable_alarm` is off, the
+integration sends the configured `alarm` notification with the mode, triggering
+zone, active zones, and time, then turns `delay_alarm` off.
 
-- If `disable_alarm` is off, the integration sends the configured `alarm`
-  notification with mode, triggering zone, active zones, and time.
-- If `disable_alarm` is on, the integration sends `alarm_inhibited`, turns
-  `disable_alarm` off, and clears the active zones.
+### Manual Inhibition
 
-The `pre_alarm` helper is a simple timed helper. Higher-level pre-alarm logic can
-be implemented with Home Assistant or HomeKit automations.
+`disable_alarm` is evaluated when `delay_alarm` expires. If it is on, Zoned
+Security sends the configured `alarm_inhibited` notification, turns
+`disable_alarm` off, clears active zones, and returns the system to its armed
+base state.
 
-### Pre-Alarm
+### Custom Actions
 
-The `pre_alarm` helper is intentionally simple: it turns on, can auto-off after a
-configured period, and can send a `prealert` notification. This makes it useful
-for two-step alarm workflows where the first sensor activation only marks a
-pre-alarm state and a later activation escalates to the real alarm.
-
-### Delayed Alarm
-
-The `delay_alarm` helper represents the grace period between a zone trigger and
-the final alarm action. During this period another automation or a user can turn
-on `disable_alarm` to inhibit the alarm.
-
-### Alarm Inhibition
-
-The `disable_alarm` helper is a manual inhibition flag. It is evaluated when
-`delay_alarm` expires. If it is on, Zoned Security sends the inhibited
-notification, turns `disable_alarm` off, clears active zones, and returns the
-system to its armed base state.
+Home Assistant and HomeKit automations can react to any helper state change.
+Typical examples include starting a siren or turning on lights when
+`delay_alarm` expires without inhibition, sending an early warning when
+`pre_alarm` turns on, or showing a manual cancellation workflow while
+`disable_alarm` is active.
 
 ## Data and Storage
 
@@ -300,8 +308,9 @@ Home Assistant notification integration.
 
 ## External References
 
-This integration is inspired by the former `homebridge-automation-switches`
-security-system model. The original repository is no longer available in its
+This integration is inspired by a customized Homebridge alarm workflow based on
+the former `homebridge-automation-switches` security-system and automation
+switch primitives. The original repository is no longer available in its
 previous location, but archived documentation may still be useful for
 understanding the Homebridge behavior that motivated this project.
 
