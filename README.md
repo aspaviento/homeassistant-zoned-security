@@ -170,8 +170,8 @@ notifications:
 
 When the delayed alarm expires without inhibition, the `alarm` notification is
 sent with additional context: mode, triggering zone, active zones, and time. When
-the alarm is manually inhibited, `alarm_inhibited` is sent as a simple message
-and the active zones are cleared.
+the alarm is manually inhibited, `alarm_inhibited` is sent with the same context
+when available, then the active zones are cleared.
 
 ## Example Configuration
 
@@ -298,9 +298,10 @@ zone, active zones, and time, then turns `delay_alarm` off.
 ### Manual Inhibition
 
 `disable_alarm` is evaluated when `delay_alarm` expires. If it is on, Zoned
-Security sends the configured `alarm_inhibited` notification, turns
-`disable_alarm` off, clears active zones, and returns the system to its armed
-base state.
+Security sends the configured `alarm_inhibited` notification with the mode,
+triggering zone, active zones, and time when that context is available. It then
+turns `disable_alarm` off, clears active zones, and returns the system to its
+armed base state.
 
 ### Custom Actions
 

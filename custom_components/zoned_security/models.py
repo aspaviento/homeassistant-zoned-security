@@ -295,12 +295,15 @@ class ZonedSecuritySystem:
         if helper == HELPER_DELAY_ALARM:
             if self.helpers.get(HELPER_DISABLE_ALARM):
                 _LOGGER.info("Alarm actions inhibited because Disable Alarm is active")
+                alarm_context = self._alarm_context or self._context_from_active_zones()
                 self.helpers[HELPER_DISABLE_ALARM] = False
                 self._clear_active_zones()
-                self._alarm_context = None
                 await self.async_store()
                 self._log_activity("alarm inhibited")
-                await self.async_send_notification(NOTIFICATION_ALARM_INHIBITED)
+                await self.async_send_notification(
+                    NOTIFICATION_ALARM_INHIBITED, alarm_context
+                )
+                self._alarm_context = None
             else:
                 alarm_context = self._alarm_context or self._context_from_active_zones()
                 self._log_activity("alarm activated")
