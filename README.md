@@ -212,7 +212,7 @@ zoned_security:
           stored: false
         disable_alarm:
           name: Disable Alarm
-          period: 120
+          period: 90
           stored: false
 
       notifications:
