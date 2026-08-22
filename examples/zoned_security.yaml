@@ -34,6 +34,7 @@ zoned_security:
           stored: false
         disable_alarm:
           name: Disable Alarm
+          period: 120
           stored: false
 
       notifications:

@@ -25,6 +25,7 @@ from .const import (
     CONF_SYSTEMS,
     CONF_ZONES,
     DEFAULT_DELAY_SECONDS,
+    DEFAULT_DISABLE_SECONDS,
     DOMAIN,
     HELPER_DELAY_ALARM,
     HELPER_DISABLE_ALARM,
@@ -68,7 +69,8 @@ DEFAULT_HELPERS = {
     },
     HELPER_DISABLE_ALARM: {
         CONF_NAME: "Disable Alarm",
-        CONF_AUTO_OFF: False,
+        CONF_PERIOD: DEFAULT_DISABLE_SECONDS,
+        CONF_AUTO_OFF: True,
         CONF_STORED: False,
     },
 }
@@ -179,8 +181,9 @@ def _build_system_config(key: str, data: dict[str, Any]) -> SystemConfig:
     }
 
     helpers: dict[str, HelperConfig] = {}
-    helper_data = DEFAULT_HELPERS | data.get(CONF_HELPERS, {})
-    for helper_key, helper_config in helper_data.items():
+    configured_helpers = data.get(CONF_HELPERS, {})
+    for helper_key, default_config in DEFAULT_HELPERS.items():
+        helper_config = default_config | configured_helpers.get(helper_key, {})
         helpers[helper_key] = HelperConfig(
             name=helper_config[CONF_NAME],
             period=helper_config.get(CONF_PERIOD),

@@ -138,6 +138,14 @@ class HelperSwitch(BaseZonedSecuritySwitch):
         """Return true if this helper is active."""
         return self.system.helpers[self.helper]
 
+    @property
+    def extra_state_attributes(self) -> dict[str, Any]:
+        """Return helper configuration attributes."""
+        helper_config = self.system.config.helpers[self.helper]
+        if helper_config.period is None:
+            return {}
+        return {"period": helper_config.period}
+
     async def async_turn_on(self, **kwargs: Any) -> None:
         """Turn helper on."""
         await self.system.async_set_helper(self.helper, True)

@@ -121,8 +121,10 @@ Zone options:
 Helper options:
 
 - `name`: display name for the helper switch.
-- `period`: optional timer duration in seconds.
-- `auto_off`: whether the helper turns itself off when the timer expires.
+- `period`: optional timer duration in seconds. Helper switches expose this as
+  a `period` state attribute so dashboards can show the configured timing.
+- `auto_off`: whether the helper turns itself off when the timer expires. The
+  standard alarm helpers are designed to be transient.
 - `stored`: reserved for helper persistence. Helpers are normally transient.
 
 Notification options:
@@ -210,6 +212,7 @@ zoned_security:
           stored: false
         disable_alarm:
           name: Disable Alarm
+          period: 120
           stored: false
 
       notifications:
@@ -300,8 +303,12 @@ zone, active zones, and time, then turns `delay_alarm` off.
 `disable_alarm` is evaluated when `delay_alarm` expires. If it is on, Zoned
 Security sends the configured `alarm_inhibited` notification with the mode,
 triggering zone, active zones, and time when that context is available. It then
-turns `disable_alarm` off, clears active zones, and returns the system to its
-armed base state.
+clears active zones and returns the system to its armed base state.
+
+`disable_alarm` is not turned off by the delayed-alarm decision itself. It stays
+on until its own configured timer expires. This keeps external automations, such
+as HomeKit rules that react to `delay_alarm` turning off, able to observe that
+the alarm was inhibited.
 
 ### Custom Actions
 
