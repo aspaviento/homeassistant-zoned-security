@@ -87,9 +87,9 @@ HELPER_SCHEMA = vol.Schema(
     {
         vol.Required(CONF_NAME): cv.string,
         vol.Optional(CONF_PERIOD): vol.All(vol.Coerce(int), vol.Range(min=1)),
-        vol.Optional(CONF_AUTO_OFF, default=False): cv.boolean,
-        vol.Optional(CONF_STORED, default=False): cv.boolean,
-        vol.Optional(CONF_RESET_ACTIVE_ZONES_ON_EXPIRE, default=False): cv.boolean,
+        vol.Optional(CONF_AUTO_OFF): cv.boolean,
+        vol.Optional(CONF_STORED): cv.boolean,
+        vol.Optional(CONF_RESET_ACTIVE_ZONES_ON_EXPIRE): cv.boolean,
     }
 )
 
