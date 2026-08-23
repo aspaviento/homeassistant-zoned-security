@@ -24,7 +24,9 @@ Before committing code changes, run:
 
 ```bash
 PYTHONPYCACHEPREFIX=/private/tmp/zoned-security-pycache python3 -m compileall custom_components/zoned_security
+python3 -m json.tool custom_components/zoned_security/manifest.json >/dev/null
 ruby -e 'require "yaml"; YAML.load_file("examples/zoned_security.yaml")'
+git diff --check
 ```
 
 Before publishing, scan for private household details:
@@ -47,6 +49,15 @@ git grep -n -E 'mataberrypi|onepi|zeropi|/home/pi|192\.168|fdf2|HA (Zona|Modo|Se
   notification semantics change.
 - Treat this as an alarm workflow helper, not a certified safety-critical alarm
   system.
+- Do not restart Home Assistant or Homebridge unless the user explicitly asks.
+  The user normally performs restarts after installing or updating through HACS.
+- Do not deploy changes to a live Home Assistant instance by directly copying
+  files into `custom_components` once the integration is managed through HACS,
+  unless the user explicitly authorizes that exception.
+- For changes that should be consumed through HACS, use the release flow:
+  validate locally, bump `manifest.json`, commit, push, tag, create a GitHub
+  release, then let the user redownload or update through HACS and restart Home
+  Assistant.
 
 ## Change Expectations
 
